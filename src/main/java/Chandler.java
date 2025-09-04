@@ -56,6 +56,57 @@ public class Chandler {
                 System.out.println("    ____________________________________________________________");
                 break;
 
+            case "todo":
+                tasks[taskCount] = new Todo(parts[1]);
+                System.out.println("    ____________________________________________________________");
+                System.out.println("    Got it. I've added this task:");
+                System.out.println("      " + tasks[taskCount]);
+                System.out.println("    Now you have " + (taskCount + 1) + " tasks in the list.");
+                System.out.println("    ____________________________________________________________");
+                taskCount++;
+                break;
+
+            case "deadline":
+                String[] deadlineParts = parts[1].split(" /by ", 2);
+                if (deadlineParts.length < 2) {
+                    System.out.println("    ____________________________________________________________");
+                    System.out.println("    Please use the format: deadline <description> /by <time>");
+                    System.out.println("    ____________________________________________________________");
+                    break;
+                }
+                tasks[taskCount] = new Deadline(deadlineParts[0], deadlineParts[1]);
+                System.out.println("    ____________________________________________________________");
+                System.out.println("    Got it. I've added this task:");
+                System.out.println("      " + tasks[taskCount]);
+                System.out.println("    Now you have " + (taskCount + 1) + " tasks in the list.");
+                System.out.println("    ____________________________________________________________");
+                taskCount++;
+                break;
+
+            case "event":
+                String[] eventParts = parts[1].split(" /from ", 2);
+                if (eventParts.length < 2) {
+                    System.out.println("    ____________________________________________________________");
+                    System.out.println("    Please use the format: event <description> /from <start> /to <end>");
+                    System.out.println("    ____________________________________________________________");
+                    break;
+                }
+                String[] timeParts = eventParts[1].split(" /to ", 2);
+                if (timeParts.length < 2) {
+                    System.out.println("    ____________________________________________________________");
+                    System.out.println("    Please use the format: event <description> /from <start> /to <end>");
+                    System.out.println("    ____________________________________________________________");
+                    break;
+                }
+                tasks[taskCount] = new Event(eventParts[0], timeParts[0], timeParts[1]);
+                System.out.println("    ____________________________________________________________");
+                System.out.println("    Got it. I've added this task:");
+                System.out.println("      " + tasks[taskCount]);
+                System.out.println("    Now you have " + (taskCount + 1) + " tasks in the list.");
+                System.out.println("    ____________________________________________________________");
+                taskCount++;
+                break;
+
             default:
                 tasks[taskCount] = new Task(input);
                 taskCount++;
@@ -66,32 +117,5 @@ public class Chandler {
             }
         }
         in.close();
-    }
-}
-
-class Task {
-    protected String description;
-    protected boolean isDone;
-
-    public Task(String description) {
-        this.description = description;
-        this.isDone = false;
-    }
-
-    public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
-    }
-
-    public void markAsDone() {
-        this.isDone = true;
-    }
-
-    public void markAsNotDone() {
-        this.isDone = false;
-    }
-
-    @Override
-    public String toString() {
-        return "[" + getStatusIcon() + "] " + description;
     }
 }
