@@ -3,6 +3,8 @@ import java.util.Scanner;
 public class Chandler {
     public static void main(String[] args) {
 
+        System.setProperty("line.separator", "\n");
+
         Scanner in = new Scanner(System.in);
         Task[] tasks = new Task[100];
         int taskCount = 0;
