@@ -6,7 +6,8 @@ public class Chandler {
         System.setProperty("line.separator", "\n");
 
         Scanner in = new Scanner(System.in);
-        Task[] tasks = new Task[100];
+        final int LIST_CAPACITY = 100;
+        Task[] tasks = new Task[LIST_CAPACITY];
         int taskCount = 0;
 
         System.out.println("    ____________________________________________________________");
