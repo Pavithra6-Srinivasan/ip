@@ -44,7 +44,7 @@ public class Chandler {
 
                 case "mark":
                     if (parts.length < 2) {
-                        throw new ChandlerException("Please specify which task to mark as done.");
+                        throw new ChandlerException("I guess I'll mark nothing then");
                     }
 
                     int markIndex = Integer.parseInt(parts[1]) - 1;
@@ -57,7 +57,7 @@ public class Chandler {
 
                 case "unmark":
                     if (parts.length < 2) {
-                        throw new ChandlerException("Please specify which task to mark as not done.");
+                        throw new ChandlerException("I guess I'll unmark nothing then");
                     }
 
                     int unmarkIndex = Integer.parseInt(parts[1]) - 1;
@@ -70,7 +70,7 @@ public class Chandler {
 
                 case "todo":
                     if (parts.length < 2 || parts[1].trim().isEmpty()) {
-                        throw new ChandlerException("The description of a todo cannot be empty.");
+                        throw new ChandlerException("I guess you are doing nothing then");
                     }
                     if (taskCount >= LIST_CAPACITY) {
                         throw new ChandlerException("Task list is full! Cannot add more tasks.");
@@ -87,7 +87,7 @@ public class Chandler {
 
                 case "deadline":
                     if (parts.length < 2 || parts[1].trim().isEmpty()) {
-                        throw new ChandlerException("Please provide a description and deadline.");
+                        throw new ChandlerException("Are you never going to finish this?");
                     }
                     if (taskCount >= LIST_CAPACITY) {
                         throw new ChandlerException("Task list is full! Cannot add more tasks.");
@@ -106,7 +106,7 @@ public class Chandler {
 
                 case "event":
                     if (parts.length < 2 || parts[1].trim().isEmpty()) {
-                        throw new ChandlerException("Please provide a description and event times.");
+                        throw new ChandlerException("Are you sure this event exits?");
                     }
                     if (taskCount >= LIST_CAPACITY) {
                         throw new ChandlerException("Task list is full! Cannot add more tasks.");
@@ -125,7 +125,7 @@ public class Chandler {
                     break;
 
                 default:
-                    throw new ChandlerException("I'm sorry, but I don't know what that means :-(");
+                    throw new ChandlerException("I have no idea what that means");
                 }
             } catch (ChandlerException e) {
                 System.out.println("    ____________________________________________________________");
