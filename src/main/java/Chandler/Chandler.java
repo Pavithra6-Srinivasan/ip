@@ -1,3 +1,5 @@
+package Chandler;
+
 import java.util.Scanner;
 
 public class Chandler {
@@ -11,7 +13,7 @@ public class Chandler {
         int taskCount = 0;
 
         System.out.println("    ____________________________________________________________");
-        System.out.println("    Hello! I'm Chandler\n    What can I do for you?");
+        System.out.println("    Hello! I'm Chandler.Chandler\n    What can I do for you?");
         System.out.println("    ____________________________________________________________");
 
         boolean isRunning = true;
@@ -73,7 +75,7 @@ public class Chandler {
                         throw new ChandlerException("I guess you are doing nothing then");
                     }
                     if (taskCount >= LIST_CAPACITY) {
-                        throw new ChandlerException("Task list is full! Cannot add more tasks.");
+                        throw new ChandlerException("Chandler.Task list is full! Cannot add more tasks.");
                     }
 
                     tasks[taskCount] = new Todo(parts[1]);
@@ -90,7 +92,7 @@ public class Chandler {
                         throw new ChandlerException("Are you never going to finish this?");
                     }
                     if (taskCount >= LIST_CAPACITY) {
-                        throw new ChandlerException("Task list is full! Cannot add more tasks.");
+                        throw new ChandlerException("Chandler.Task list is full! Cannot add more tasks.");
                     }
 
                     String[] deadlineParts = parts[1].split(" /by ", 2);
@@ -109,7 +111,7 @@ public class Chandler {
                         throw new ChandlerException("Are you sure this event exits?");
                     }
                     if (taskCount >= LIST_CAPACITY) {
-                        throw new ChandlerException("Task list is full! Cannot add more tasks.");
+                        throw new ChandlerException("Chandler.Task list is full! Cannot add more tasks.");
                     }
 
                     String[] eventParts = parts[1].split(" /from ", 2);
