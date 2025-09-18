@@ -25,4 +25,15 @@ public abstract class Task {
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    // Add getter for isDone status
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public abstract String toFileFormat();
 }
