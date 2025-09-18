@@ -1,8 +1,12 @@
 package Chandler;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Chandler {
+    private static final ArrayList<Task> tasks = new ArrayList<>();
+    private static final String DATA_FILE_PATH = "./data/chandler.txt";
+
     public static void main(String[] args) {
 
         System.setProperty("line.separator", "\n");
