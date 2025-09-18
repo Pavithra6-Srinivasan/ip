@@ -2,19 +2,25 @@ package Chandler;
 
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Chandler {
-    private static final ArrayList<Task> tasks = new ArrayList<>();
+    private static final int LIST_CAPACITY = 100;
+    private static final Task[] tasks = new Task[LIST_CAPACITY];
+    private static int taskCount = 0;
     private static final String DATA_FILE_PATH = "./data/chandler.txt";
+    private static final String DATA_DIRECTORY = "./data";
 
     public static void main(String[] args) {
 
         System.setProperty("line.separator", "\n");
-
+        loadData();
         Scanner in = new Scanner(System.in);
-        final int LIST_CAPACITY = 100;
-        Task[] tasks = new Task[LIST_CAPACITY];
-        int taskCount = 0;
 
         System.out.println("    ____________________________________________________________");
         System.out.println("    Hello! I'm Chandler.Chandler\n    What can I do for you?");
@@ -59,6 +65,7 @@ public class Chandler {
                     System.out.println("    Nice! I've marked this task as done:");
                     System.out.println("      " + tasks[markIndex]);
                     System.out.println("    ____________________________________________________________");
+                    saveData();
                     break;
 
                 case "unmark":
@@ -72,6 +79,7 @@ public class Chandler {
                     System.out.println("    OK, I've marked this task as not done yet:");
                     System.out.println("      " + tasks[unmarkIndex]);
                     System.out.println("    ____________________________________________________________");
+                    saveData();
                     break;
 
                 case "todo":
@@ -89,6 +97,7 @@ public class Chandler {
                     System.out.println("    Now you have " + (taskCount + 1) + " tasks in the list.");
                     System.out.println("    ____________________________________________________________");
                     taskCount++;
+                    saveData();
                     break;
 
                 case "deadline":
@@ -108,6 +117,7 @@ public class Chandler {
                     System.out.println("    Now you have " + (taskCount + 1) + " tasks in the list.");
                     System.out.println("    ____________________________________________________________");
                     taskCount++;
+                    saveData();
                     break;
 
                 case "event":
@@ -128,6 +138,7 @@ public class Chandler {
                     System.out.println("    Now you have " + (taskCount + 1) + " tasks in the list.");
                     System.out.println("    ____________________________________________________________");
                     taskCount++;
+                    saveData();
                     break;
 
                 default:
@@ -140,5 +151,72 @@ public class Chandler {
             }
         }
         in.close();
+    }
+    private static void loadData() {
+        try {
+            Path path = Paths.get(DATA_FILE_PATH);
+            if (!Files.exists(path)) {
+                // Create data directory if it doesn't exist
+                new File(DATA_DIRECTORY).mkdirs();
+                return;
+            }
+
+            java.util.List<String> lines = Files.readAllLines(path);
+            for (String line : lines) {
+                if (line.trim().isEmpty()) continue;
+
+                String[] parts = line.split(" \\| ");
+                if (parts.length < 3) continue;
+
+                String type = parts[0];
+                boolean isDone = parts[1].equals("1");
+                String description = parts[2];
+
+                Task task = null;
+                switch (type) {
+                case "T":
+                    task = new Todo(description);
+                    break;
+                case "D":
+                    if (parts.length >= 4) {
+                        task = new Deadline(description, parts[3]);
+                    }
+                    break;
+                case "E":
+                    if (parts.length >= 5) {
+                        task = new Event(description, parts[3], parts[4]);
+                    }
+                    break;
+                }
+
+                if (task != null && taskCount < LIST_CAPACITY) {
+                    if (isDone) {
+                        task.markAsDone();
+                    }
+                    tasks[taskCount] = task;
+                    taskCount++;
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("    ____________________________________________________________");
+            System.out.println("     Error loading data: " + e.getMessage());
+            System.out.println("    ____________________________________________________________");
+        }
+    }
+    private static void saveData() {
+        try {
+            // Ensure directory exists
+            new File(DATA_DIRECTORY).mkdirs();
+
+            FileWriter writer = new FileWriter(DATA_FILE_PATH);
+            for (int i = 0; i < taskCount; i++) {
+                writer.write(tasks[i].toFileFormat() + System.lineSeparator());
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("    ____________________________________________________________");
+            System.out.println("     Error saving data: " + e.getMessage());
+            System.out.println("    ____________________________________________________________");
+        }
     }
 }
