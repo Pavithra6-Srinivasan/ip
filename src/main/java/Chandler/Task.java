@@ -30,7 +30,6 @@ public abstract class Task {
         return description;
     }
 
-    // Add getter for isDone status
     public boolean isDone() {
         return isDone;
     }
