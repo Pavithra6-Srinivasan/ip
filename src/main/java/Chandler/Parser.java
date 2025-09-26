@@ -1,6 +1,9 @@
 package Chandler;
 
+// Parses user input into commands that the chatbot can understand.
 public class Parser {
+
+    // Parses user input string into a Command object.
     public static Command parse(String input) throws ChandlerException {
 
         String[] parts = input.split(" ", 2);

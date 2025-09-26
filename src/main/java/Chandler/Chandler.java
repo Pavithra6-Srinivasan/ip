@@ -1,11 +1,18 @@
 package Chandler;
 
+/**
+ * The main class for the Chandler chatbot.
+ * Chandler helps users manage their tasks including todos, deadlines, and events.
+ * The application supports adding, listing, marking, unmarking, deleting, and finding tasks.
+ * Data is automatically saved to and loaded from a file.
+ */
 public class Chandler {
 
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    // Constructs a new Chandler instance with the specified file path for data storage.
     public Chandler(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -17,6 +24,10 @@ public class Chandler {
         }
     }
 
+    /**
+     * Starts the chatbot and begins processing user commands.
+     * The method runs in a loop until the user enters the "bye" command.
+     */
     public void run() {
         ui.showWelcome();
         boolean isRunning = true;
@@ -33,6 +44,7 @@ public class Chandler {
         ui.close();
     }
 
+    // Executes the given command and returns whether the chatbot should continue running.
     private boolean executeCommand(Command command) throws ChandlerException {
         switch (command.getType()) {
         case BYE:
@@ -80,14 +92,17 @@ public class Chandler {
         return true;
     }
 
+    // Lists all tasks.
     private void handleList() {
         ui.showTaskList(tasks);
     }
 
+    // Exits Chandler.
     private void handleExit() {
         ui.showGoodbye();
     }
 
+    // Marks a specific task.
     private void handleMark(String arguments) throws ChandlerException {
         if (arguments.isEmpty()) {
             throw new ChandlerException("I guess I'll mark nothing then");
@@ -97,6 +112,7 @@ public class Chandler {
         ui.showTaskMarked(tasks.getUserTask(index), true);
     }
 
+    // Unmarks a specific task.
     private void handleUnmark(String arguments) throws ChandlerException {
         if (arguments.isEmpty()) {
             throw new ChandlerException("I guess I'll unmark nothing then");
@@ -106,6 +122,7 @@ public class Chandler {
         ui.showTaskMarked(tasks.getUserTask(index), false);
     }
 
+    // Adds a task to list.
     private void handleTodo(String arguments) throws ChandlerException {
         if (arguments.isEmpty()) {
             throw new ChandlerException("I guess you are doing nothing then");
@@ -115,6 +132,7 @@ public class Chandler {
         ui.showTaskAdded(task, tasks.size());
     }
 
+    // Adds a task with deadline to list.
     private void handleDeadline(String arguments) throws ChandlerException {
         if (arguments.isEmpty()) {
             throw new ChandlerException("Are you never going to finish this?");
@@ -128,6 +146,7 @@ public class Chandler {
         ui.showTaskAdded(task, tasks.size());
     }
 
+    // Adds a task with dates to list.
     private void handleEvent(String arguments) throws ChandlerException {
         if (arguments.isEmpty()) {
             throw new ChandlerException("Are you sure this event exists?");
@@ -148,6 +167,7 @@ public class Chandler {
         ui.showTaskAdded(task, tasks.size());
     }
 
+    // Deletes a task from list.
     private void handleDelete(String arguments) throws ChandlerException {
         if (arguments.isEmpty()) {
             throw new ChandlerException("Please specify which task to delete.");

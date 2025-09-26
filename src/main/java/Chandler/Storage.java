@@ -9,15 +9,18 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+// Handles loading and saving of tasks.
 public class Storage {
     private String filePath;
     private String directoryPath;
 
+    // Constructs a new Storage instance with the specified file path.
     public Storage(String filePath) {
         this.filePath = filePath;
         this.directoryPath = new File(filePath).getParent();
     }
 
+    // Loads tasks from the storage file.
     public ArrayList<Task> load() throws ChandlerException {
         ArrayList<Task> tasks = new ArrayList<>();
         try {
@@ -42,6 +45,7 @@ public class Storage {
         }
     }
 
+    // Saves current list of tasks to storage file.
     public void save(TaskList tasks) throws ChandlerException {
         try {
             new File(directoryPath).mkdirs();
@@ -55,6 +59,7 @@ public class Storage {
         }
     }
 
+    // Parses a single line from the storage file into a Task object.
     private Task parseTaskFromLine(String line) {
         String[] parts = line.split(" \\| ");
         if (parts.length < 3) return null;
