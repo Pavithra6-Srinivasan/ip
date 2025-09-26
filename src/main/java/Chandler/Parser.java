@@ -24,6 +24,8 @@ public class Parser {
             return new Command(CommandType.EVENT, arguments);
         case "delete":
             return new Command(CommandType.DELETE, arguments);
+        case "find":
+            return new Command(CommandType.FIND, arguments);
         default:
             throw new ChandlerException("I have no idea what that means");
         }
