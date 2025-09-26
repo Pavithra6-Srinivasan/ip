@@ -72,6 +72,10 @@ public class Chandler {
             handleDelete(command.getArguments());
             storage.save(tasks);
             break;
+
+        case FIND:
+            handleFind(command.getArguments());
+            break;
         }
         return true;
     }
@@ -159,6 +163,15 @@ public class Chandler {
         } catch (NumberFormatException e) {
             throw new ChandlerException("Please provide a valid task number.");
         }
+    }
+
+    private void handleFind(String arguments) throws ChandlerException {
+        if (arguments.isEmpty()) {
+            throw new ChandlerException("Please specify a keyword to search for.");
+        }
+
+        TaskList matchingTasks = tasks.find(arguments);
+        ui.showMatchingTasks(matchingTasks, arguments);
     }
 
     public static void main(String[] args) {

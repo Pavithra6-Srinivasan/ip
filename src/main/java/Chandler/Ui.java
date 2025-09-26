@@ -71,6 +71,19 @@ public class Ui {
         System.out.println("    ____________________________________________________________");
     }
 
+    public void showMatchingTasks(TaskList matchingTasks, String keyword) {
+        System.out.println("    ____________________________________________________________");
+        if (matchingTasks.isEmpty()) {
+            System.out.println("    No tasks found containing: '" + keyword + "'");
+        } else {
+            System.out.println("    Here are the matching tasks in your list:");
+            for (int i = 0; i < matchingTasks.size(); i++) {
+                System.out.println("    " + (i + 1) + "." + matchingTasks.get(i));
+            }
+        }
+        System.out.println("    ____________________________________________________________");
+    }
+
     public void close() {
         scanner.close();
     }
