@@ -34,10 +34,6 @@ public class Ui {
         System.out.println("    ____________________________________________________________");
     }
 
-    public void showLine() {
-        System.out.println("    ____________________________________________________________");
-    }
-
     // Reads command from user.
     public String readCommand() {
         return scanner.nextLine().trim();
@@ -69,7 +65,7 @@ public class Ui {
         System.out.println("    ____________________________________________________________");
     }
 
-    // Displays the list of all tasks.
+    // Displays list of all tasks.
     public void showTaskList(TaskList tasks) {
         System.out.println("    ____________________________________________________________");
         System.out.println("    Here are the tasks in your list:");
@@ -82,6 +78,7 @@ public class Ui {
         System.out.println("    ____________________________________________________________");
     }
 
+    // Displays list of tasks that contain keyword.
     public void showMatchingTasks(TaskList matchingTasks, String keyword) {
         System.out.println("    ____________________________________________________________");
         if (matchingTasks.isEmpty()) {

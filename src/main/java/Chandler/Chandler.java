@@ -170,7 +170,7 @@ public class Chandler {
     // Deletes a task from list.
     private void handleDelete(String arguments) throws ChandlerException {
         if (arguments.isEmpty()) {
-            throw new ChandlerException("Please specify which task to delete.");
+            throw new ChandlerException("So I guess you did nothing.");
         }
         int index = parseIndex(arguments);
         Task removedTask = tasks.remove(index);
@@ -187,7 +187,7 @@ public class Chandler {
 
     private void handleFind(String arguments) throws ChandlerException {
         if (arguments.isEmpty()) {
-            throw new ChandlerException("Please specify a keyword to search for.");
+            throw new ChandlerException("You want me to find nothing?");
         }
 
         TaskList matchingTasks = tasks.find(arguments);
