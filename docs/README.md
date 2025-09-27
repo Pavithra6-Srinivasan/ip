@@ -12,6 +12,7 @@ and find tasks while enjoying his unique, slightly sarcastic personality.
 Adds a simple todo task without any date/time.
 
 Format: `todo DESCRIPTION`
+
 Example: `todo buy groceries`
 
 Expected outcome:
@@ -28,6 +29,7 @@ Expected outcome:
 Adds a task that needs to be completed by a specific date.
 
 Format: `deadline DESCRIPTION /by DATE`
+
 Example: `deadline submit report /by 3/10/2025`
 
 Expected outcome:
@@ -44,6 +46,7 @@ Expected outcome:
 Adds a task that occurs during a specific time period.
 
 Format: `event DESCRIPTION /from START_DATE /to END_DATE`
+
 Example: `event team meeting /from 20/12/2024 2pm /to 20/12/2024 4pm`
 
 Expected outcome:
@@ -60,6 +63,7 @@ Expected outcome:
 Marks a specific task as completed.
 
 Format: `mark TASK_NUMBER`
+
 Example: `mark 2`
 
 Expected outcome:
@@ -75,6 +79,7 @@ Expected outcome:
 Marks a specific task as not completed.
 
 Format: `unmark TASK_NUMBER`
+
 Example: `unmark 2`
 
 Expected outcome:
@@ -106,6 +111,7 @@ Expected outcome:
 Removes a task from the list permanently.
 
 Format: `delete TASK_NUMBER`
+
 Example: `delete 3`
 
 Expected outcome:
@@ -122,6 +128,7 @@ Expected outcome:
 Searches for tasks containing specific keywords in their descriptions.
 
 Format: `find KEYWORD`
+
 Example: `find book`
 
 Expected outcome:
