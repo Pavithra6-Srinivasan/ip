@@ -36,7 +36,7 @@ Expected outcome:
 ```
     ____________________________________________________________
     Got it. I've added this task:
-      [D][ ] submit report (by: Dec 15 2024)
+      [D][ ] submit report (by: 3/10/2025)
     Now you have 5 tasks in the list.
     ____________________________________________________________
 ```
@@ -47,13 +47,13 @@ Adds a task that occurs during a specific time period.
 
 Format: `event DESCRIPTION /from START_DATE /to END_DATE`
 
-Example: `event team meeting /from 20/12/2024 2pm /to 20/12/2024 4pm`
+Example: `event team meeting /from 3/10/2025 2pm /to 3/10/2025 4pm`
 
 Expected outcome:
 ```
     ____________________________________________________________
     Got it. I've added this task:
-      [E][ ] team meeting (from: Dec 20 2024, 2pm to: Dec 20 2024, 4pm)
+      [E][ ] team meeting (from: 3/10/2025 2pm to: 3/10/2025 4pm)
     Now you have 6 tasks in the list.
     ____________________________________________________________
 ```
@@ -70,7 +70,7 @@ Expected outcome:
 ```
     ____________________________________________________________
     Nice! I've marked this task as done:
-      [D][X] return book (by: June 6th)
+      [D][X] submit report (by: 3/10/2025)
     ____________________________________________________________
 ```
 
@@ -86,7 +86,7 @@ Expected outcome:
 ```
     ____________________________________________________________
     OK, I've marked this task as not done yet:
-      [D][ ] return book (by: June 6th)
+      [D][ ] submit report (by: 3/10/2025)
     ____________________________________________________________
 ```
 
@@ -100,9 +100,9 @@ Expected outcome:
 ```
     ____________________________________________________________
     Here are the tasks in your list:
-    1.[T][ ] read book
-    2.[D][X] return book (by: June 6th)
-    3.[E][ ] project meeting (from: Aug 6th 2pm to: 4pm
+    1.[T][ ] buy groceries
+    2.[D][ ] submit report (by: 3/10/2025)
+    3.[E][ ] team meeting (from: 3/10/2025 2pm to: 3/10/2025 4pm)
     ____________________________________________________________
 ```
 
