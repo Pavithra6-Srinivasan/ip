@@ -1,4 +1,4 @@
-package Chandler;
+package chandler;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -20,7 +20,13 @@ public class Storage {
         this.directoryPath = new File(filePath).getParent();
     }
 
-    // Loads tasks from the storage file.
+    /**
+     * Loads tasks from the storage file. If the file does not exist, it creates the directory structure
+     * and returns an empty task list.
+     *
+     * @return an ArrayList of tasks loaded from the file
+     * @throws ChandlerException if there is an error reading the file
+     */
     public ArrayList<Task> load() throws ChandlerException {
         ArrayList<Task> tasks = new ArrayList<>();
         try {
@@ -45,7 +51,12 @@ public class Storage {
         }
     }
 
-    // Saves current list of tasks to storage file.
+    /**
+     * Save current list of tasks to storage file.
+     *
+     * @param tasks the TaskList containing tasks to save
+     * @throws ChandlerException if there is an error writing to the file
+     */
     public void save(TaskList tasks) throws ChandlerException {
         try {
             new File(directoryPath).mkdirs();
@@ -59,7 +70,12 @@ public class Storage {
         }
     }
 
-    // Parses a single line from the storage file into a Task object.
+    /**
+     * Parses a line from the storage file into a Task object.
+     *
+     * @param line line to parse
+     * @return the parsed Task object, or null if parsing fails
+     */
     private Task parseTaskFromLine(String line) {
         String[] parts = line.split(" \\| ");
         if (parts.length < 3) return null;

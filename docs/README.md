@@ -4,7 +4,7 @@
 
 Chandler is a chatbot for managing your tasks efficiently. 
 It helps you keep track of todos, deadlines, and events through a simple 
-text-based interface. With Chandler, you can easily add, delete, mark, 
+text-based interface. With chandler, you can easily add, delete, mark, 
 and find tasks while enjoying his unique, slightly sarcastic personality.
 
 ## Adding a Todo

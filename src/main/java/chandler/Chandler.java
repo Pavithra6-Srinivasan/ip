@@ -1,4 +1,4 @@
-package Chandler;
+package chandler;
 
 /**
  * The main class for the Chandler chatbot.
@@ -12,7 +12,11 @@ public class Chandler {
     private TaskList tasks;
     private Ui ui;
 
-    // Constructs a new Chandler instance with the specified file path for data storage.
+    /**
+     * Constructs a new Chandler instance with the specified file path for data storage.
+     *
+     * @param filePath the path to the file where tasks will be stored
+     */
     public Chandler(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -44,7 +48,13 @@ public class Chandler {
         ui.close();
     }
 
-    // Executes the given command and returns whether the chatbot should continue running.
+    /**
+     * Executes the given command and returns whether chatbot should continue running.
+     *
+     * @param command the command to execute
+     * @return true if the chatbot should continue running, false if it should exit
+     * @throws ChandlerException if there is an error executing the command
+     */
     private boolean executeCommand(Command command) throws ChandlerException {
         switch (command.getType()) {
         case BYE:
@@ -102,7 +112,12 @@ public class Chandler {
         ui.showGoodbye();
     }
 
-    // Marks a specific task.
+    /**
+     * Handles mark command by marking a task as done.
+     *
+     * @param arguments the task number to mark as done
+     * @throws ChandlerException if the arguments are invalid or task number is out of range
+     */
     private void handleMark(String arguments) throws ChandlerException {
         if (arguments.isEmpty()) {
             throw new ChandlerException("I guess I'll mark nothing then");
@@ -112,7 +127,12 @@ public class Chandler {
         ui.showTaskMarked(tasks.getUserTask(index), true);
     }
 
-    // Unmarks a specific task.
+    /**
+     * Handles unmark command by marking a task as not done.
+     *
+     * @param arguments the task number to mark as not done
+     * @throws ChandlerException if the arguments are invalid or task number is out of range
+     */
     private void handleUnmark(String arguments) throws ChandlerException {
         if (arguments.isEmpty()) {
             throw new ChandlerException("I guess I'll unmark nothing then");
@@ -122,7 +142,12 @@ public class Chandler {
         ui.showTaskMarked(tasks.getUserTask(index), false);
     }
 
-    // Adds a task to list.
+    /**
+     * Handles todo command by adding a new todo task.
+     *
+     * @param arguments the description of the todo task
+     * @throws ChandlerException if the arguments are empty or invalid
+     */
     private void handleTodo(String arguments) throws ChandlerException {
         if (arguments.isEmpty()) {
             throw new ChandlerException("I guess you are doing nothing then");
@@ -132,7 +157,12 @@ public class Chandler {
         ui.showTaskAdded(task, tasks.size());
     }
 
-    // Adds a task with deadline to list.
+    /**
+     * Handles deadline command by adding a new deadline task.
+     *
+     * @param arguments the description and due date of the deadline task
+     * @throws ChandlerException if the arguments are empty or in invalid format
+     */
     private void handleDeadline(String arguments) throws ChandlerException {
         if (arguments.isEmpty()) {
             throw new ChandlerException("Are you never going to finish this?");
@@ -146,7 +176,12 @@ public class Chandler {
         ui.showTaskAdded(task, tasks.size());
     }
 
-    // Adds a task with dates to list.
+    /**
+     * Handles event command by adding a new event task.
+     *
+     * @param arguments the description, start time, and end time of the event
+     * @throws ChandlerException if the arguments are empty or in invalid format
+     */
     private void handleEvent(String arguments) throws ChandlerException {
         if (arguments.isEmpty()) {
             throw new ChandlerException("Are you sure this event exists?");
@@ -167,7 +202,12 @@ public class Chandler {
         ui.showTaskAdded(task, tasks.size());
     }
 
-    // Deletes a task from list.
+    /**
+     * Handles delete command by removing a task from the list.
+     *
+     * @param arguments the task number to delete
+     * @throws ChandlerException if the arguments are invalid or task number is out of range
+     */
     private void handleDelete(String arguments) throws ChandlerException {
         if (arguments.isEmpty()) {
             throw new ChandlerException("So I guess you did nothing.");
@@ -185,6 +225,12 @@ public class Chandler {
         }
     }
 
+    /**
+     * Handles find command by searching for tasks containing keyword.
+     *
+     * @param arguments the keyword to search for in task descriptions
+     * @throws ChandlerException if the arguments are empty
+     */
     private void handleFind(String arguments) throws ChandlerException {
         if (arguments.isEmpty()) {
             throw new ChandlerException("You want me to find nothing?");

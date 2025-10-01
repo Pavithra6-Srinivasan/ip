@@ -1,4 +1,4 @@
-package Chandler;
+package chandler;
 
 import java.util.ArrayList;
 
@@ -13,6 +13,11 @@ public class TaskList {
         this.tasks = new ArrayList<>();
     }
 
+    /**
+     * Constructs a TaskList with the given list of tasks.
+     *
+     * @param tasks the initial list of tasks
+     */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
@@ -22,7 +27,13 @@ public class TaskList {
         tasks.add(task);
     }
 
-    // Removes a task from the list.
+    /**
+     * Removes a task from the list at the specified index.
+     *
+     * @param index the index of the task to remove
+     * @return the removed task
+     * @throws ChandlerException if the index is invalid
+     */
     public Task remove(int index) throws ChandlerException {
         if (index < 0 || index >= tasks.size()) {
             throw new ChandlerException("Are you sure this task exists?");
@@ -30,7 +41,12 @@ public class TaskList {
         return tasks.remove(index);
     }
 
-    // Returns the task at the specified index.
+    /**
+     * Returns the task of the specified index.
+     *
+     * @param index the index of the task to retrieve
+     * @return the task at the specified index
+     */
     public Task get(int index) {
         return tasks.get(index);
     }
@@ -51,7 +67,13 @@ public class TaskList {
         return tasks.isEmpty();
     }
 
-    // Marks or unmarks a task at the specified index.
+    /**
+     * Marks or unmarks a task at the specified index.
+     *
+     * @param index the index of the task to mark/unmark
+     * @param isDone true to mark as done, false to mark as not done
+     * @throws ChandlerException if the index is invalid
+     */
     public void markTask(int index, boolean isDone) throws ChandlerException {
         Task task = getUserTask(index);
         if (isDone) {
@@ -61,6 +83,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Finds tasks that contain the given keyword in their description.
+     *
+     * @param keyword the keyword to search for
+     * @return a list containing only the matching tasks
+     */
     public TaskList find(String keyword) {
         ArrayList<Task> matchingTasks = new ArrayList<>();
         for (Task task : tasks) {

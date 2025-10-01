@@ -1,4 +1,4 @@
-package Chandler;
+package chandler;
 
 public class Todo extends Task {
     public Todo(String description) {

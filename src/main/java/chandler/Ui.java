@@ -1,4 +1,4 @@
-package Chandler;
+package chandler;
 
 import java.util.Scanner;
 
@@ -39,7 +39,12 @@ public class Ui {
         return scanner.nextLine().trim();
     }
 
-    // Displays a message when a task is successfully added.
+    /**
+     * Displays a message when a task is successfully added.
+     *
+     * @param task the task that was added
+     * @param totalTasks the new total number of tasks after adding
+     */
     public void showTaskAdded(Task task, int totalTasks) {
         System.out.println("    ____________________________________________________________");
         System.out.println("    Got it. I've added this task:");
@@ -48,7 +53,12 @@ public class Ui {
         System.out.println("    ____________________________________________________________");
     }
 
-    // Displays a message when a task is successfully removed.
+    /**
+     * Displays a message when a task is successfully removed.
+     *
+     * @param task the task that was removed
+     * @param totalTasks the new total number of tasks after removal
+     */
     public void showTaskRemoved(Task task, int totalTasks) {
         System.out.println("    ____________________________________________________________");
         System.out.println("    Noted. I've removed this task:");
@@ -57,7 +67,12 @@ public class Ui {
         System.out.println("    ____________________________________________________________");
     }
 
-    // Displays a message when a task has been marked or unmarked.
+    /**
+     * Displays a message when a task has been marked or unmarked.
+     *
+     * @param task the task that was modified
+     * @param isDone true if the task was marked as done, false if marked as not done
+     */
     public void showTaskMarked(Task task, boolean isDone) {
         System.out.println("    ____________________________________________________________");
         System.out.println("    " + (isDone ? "Nice! I've marked this task as done:" : "OK, I've marked this task as not done yet:"));
@@ -78,7 +93,12 @@ public class Ui {
         System.out.println("    ____________________________________________________________");
     }
 
-    // Displays list of tasks that contain keyword.
+    /**
+     * Displays tasks that match the keyword.
+     *
+     * @param matchingTasks the TaskList containing matching tasks
+     * @param keyword the keyword that was searched for
+     */
     public void showMatchingTasks(TaskList matchingTasks, String keyword) {
         System.out.println("    ____________________________________________________________");
         if (matchingTasks.isEmpty()) {

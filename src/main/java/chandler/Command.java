@@ -1,4 +1,4 @@
-package Chandler;
+package chandler;
 
 public class Command {
 
